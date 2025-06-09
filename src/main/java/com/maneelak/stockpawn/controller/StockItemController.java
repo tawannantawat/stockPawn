@@ -34,6 +34,12 @@ public class StockItemController {
         return ResponseEntity.ok(stockItemService.createItem(item));
     }
 
+    //test issue
+    @PostMapping
+    public ResponseEntity<StockItem> create(@RequestBody StockItem item) {
+        return ResponseEntity.ok(stockItemService.createItem(item));
+    } 
+
     //แก้ไข
     @PutMapping("/{id}")
     public ResponseEntity<StockItem> update(@PathVariable Long id, @RequestBody StockItem item) {
