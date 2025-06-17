@@ -7,6 +7,7 @@ import com.maneelak.stockpawn.repository.StockTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+
 public class StockItemService {
 
     private final StockItemRepository stockItemRepository;
@@ -65,10 +67,12 @@ public class StockItemService {
     }
 
     //ลบสินค้า
+    @Transactional
     public void deleteItem(Long id) {
         if (!stockItemRepository.existsById(id)) {
             throw new EntityNotFoundException("Stock item not found");
         }
         stockItemRepository.deleteById(id);
+        
     }
 }

@@ -10,15 +10,15 @@ import java.util.List;
 @Repository
 public interface StockItemRepository extends JpaRepository<StockItem, Long> {
 
-    //ค้นหาด้วยชื่อ
+
     List<StockItem> findByItemNameContainingIgnoreCase(String keyword);
 
-    //ค้นหาตามประเภท
+
     List<StockItem> findByType(StockType type);
 
-    //ค้นหาตามน้ำหนักขั้นต่ำ/สูงสุด
+
     List<StockItem> findByWeightValueBetween(Double min, Double max);
 
-    //หาสินค้าที่เหลือน้อยกว่าX
+
     List<StockItem> findByQuantityLessThan(Integer quantityThreshold);
 }
