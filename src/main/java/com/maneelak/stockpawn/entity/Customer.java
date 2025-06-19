@@ -30,6 +30,12 @@ public class Customer {
     @Column(name = "id_card_data", columnDefinition = "text")
     private String idCardData;
 
+    @Column(name = "birthdate")
+    private LocalDateTime birthDate;
+
+    @Column(name = "expirydate")
+    private LocalDateTime expiryDate;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     
