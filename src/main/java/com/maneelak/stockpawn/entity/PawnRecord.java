@@ -1,12 +1,14 @@
 package com.maneelak.stockpawn.entity;
 
+import com.maneelak.stockpawn.enums.PawnStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import com.maneelak.stockpawn.entity.User;
 
 @Entity
 @Table(name = "pawn_records")
@@ -29,8 +31,8 @@ public class PawnRecord {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "created_by_user_id")
-    private User createdBy; 
+    @JoinColumn(name = "created_by_user_id", nullable = false)
+    private User createdBy;
 
     @Column(name = "pawn_date", nullable = false)
     private LocalDate pawnDate;
@@ -47,17 +49,22 @@ public class PawnRecord {
     @Column(name = "redeemed_date")
     private LocalDate redeemedDate;
 
-    @Column(length = 20)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20, nullable = false)
+    private PawnStatus status;
 
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
         if (this.status == null) {
-            this.status = "active";
+            this.status = PawnStatus.ACTIVE;
         }
     }
 }
