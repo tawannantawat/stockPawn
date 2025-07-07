@@ -46,6 +46,9 @@ public class PawnRecord {
     @Column(name = "total_evaluated", precision = 12, scale = 2)
     private BigDecimal totalEvaluated;
 
+    @Column(name = "interest_period_months")
+    private Integer interestPeriodMonths;   
+
     @Column(name = "redeemed_date")
     private LocalDate redeemedDate;
 

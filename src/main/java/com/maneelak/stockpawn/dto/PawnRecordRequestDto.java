@@ -15,6 +15,7 @@ public class PawnRecordRequestDto {
     private Integer createdByUserId;
     private LocalDate pawnDate;
     private LocalDate dueDate;
+    private Integer interestPeriodMonths;
     private BigDecimal interestRate;
     private BigDecimal totalEvaluated;
     private List<PawnItemRequestDto> items;

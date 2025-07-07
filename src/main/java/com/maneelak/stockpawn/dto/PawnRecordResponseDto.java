@@ -16,6 +16,7 @@ public class PawnRecordResponseDto {
     private String customerName;
     private LocalDate pawnDate;
     private LocalDate dueDate;
+    private Integer interestPeriodMonths;
     private BigDecimal interestRate;
     private BigDecimal totalEvaluated;
     private String status;

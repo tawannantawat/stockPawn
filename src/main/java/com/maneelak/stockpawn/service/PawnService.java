@@ -24,7 +24,6 @@ public class PawnService {
     private final CustomerRepository customerRepository;
     private final UserRepository userRepository;
 
-    // ✅ สร้างใบจำนำ
     public PawnRecordResponseDto createPawn(PawnRecordRequestDto dto) {
         Customer customer = customerRepository.findById(dto.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
@@ -39,6 +38,7 @@ public class PawnService {
                 .createdBy(user)
                 .pawnDate(dto.getPawnDate())
                 .dueDate(dto.getDueDate())
+                .interestPeriodMonths(dto.getInterestPeriodMonths())
                 .interestRate(dto.getInterestRate())
                 .totalEvaluated(dto.getTotalEvaluated())
                 .status(PawnStatus.ACTIVE)
@@ -100,6 +100,7 @@ public class PawnService {
         record.setCreatedBy(user);
         record.setPawnDate(dto.getPawnDate());
         record.setDueDate(dto.getDueDate());
+        record.setInterestPeriodMonths(dto.getInterestPeriodMonths());
         record.setInterestRate(dto.getInterestRate());
         record.setTotalEvaluated(dto.getTotalEvaluated());
         pawnRecordRepository.save(record);
@@ -144,6 +145,7 @@ public class PawnService {
                 .customerName(record.getCustomer().getName())
                 .pawnDate(record.getPawnDate())
                 .dueDate(record.getDueDate())
+                .interestPeriodMonths(record.getInterestPeriodMonths())
                 .interestRate(record.getInterestRate())
                 .totalEvaluated(record.getTotalEvaluated())
                 .status(record.getStatus().name())
